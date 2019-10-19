@@ -11,33 +11,26 @@
 <header>
 </header>
 <body>
-<div class="posts">
-    <div class="post">
-        <div class="top">
-            <div class="pp">
-                <img src="https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/72696640_404517410448630_6411701761299447808_n.jpg?_nc_cat=104&_nc_oc=AQkLP2bt5tK2aaPKSOT57vxeQR36Jg8D5CrUUjMmAy9V5zrJeU8DD0l4J7-48z1bzgM&_nc_ht=scontent-cdg2-1.xx&oh=429ebfb0e4457851512b995042ab66b0&oe=5E30065C">
-            </div>
-            <div class="tet">
-                <a href="#"><p class="name">Lorem Ipsum</p></a>
-                <p class="salle">F202</p>
-            </div>
-            <div class="price">
-                <p class="price">20€</p>
+    <div class="posts">
+        <div class="post">
+            <div class="new">
+                <textarea value="" placeholder="Votre texte ici..." id="textarea"></textarea>
+                <input name="file" type="file" id="file" accept="image/*" data-multiple-caption="{count} files selected">
+                <label for="file" id="inns" class="inputfile">Envoyez une photo</label>
+                <button id="button">Poster</button>
             </div>
         </div>
-        <div class="body">
-            <p class="tett">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias vel beatae at et, officia dolorem molestiae hic distinctio iure? Perspiciatis tempore fugit voluptatum consequuntur illo optio blanditiis magni ipsam aliquam.</p>
+        <div id="poi">
         </div>
-    </div>
-    <div class="fil">
 
     </div>
-</div>
-<div class="pub">
+    <div class="pub">
 
-</div>
+    </div>
 </body>
 <footer>
 </footer>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/post.js"></script>
+<script src="assets/js/css.js"></script>
 </html>
