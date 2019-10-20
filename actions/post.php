@@ -1,4 +1,5 @@
 <?php
+session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', '');
 
 if(isset($_POST['upload'])) {
@@ -16,7 +17,8 @@ if(isset($_POST['upload'])) {
     if($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpeg" || $imageFileType == "gif") {
 
         $temp = explode(".", $_FILES['file']['name']);
-        $newfilename = round(microtime(true)) . '.' . end($temp);
+        $newfilename = $_SESSION['id'].round(microtime(true)) . '.' . end($temp);
+        $newfileforsql = "users/vente/images/".$newfilename;
         move_uploaded_file($_FILES['file']['tmp_name'], $dossier . $newfilename);
 
         if(move_uploaded_file($_FILES['file']['tmp_name'], $dossier . $newfilename))
@@ -25,8 +27,8 @@ if(isset($_POST['upload'])) {
         }
         else
         {
-             $requser = $bdd->prepare("INSERT INTO vente(user_id, text, picture, price, available, date) VALUES(1, ?, ?, 20, 1, UNIX_TIMESTAMP())");
-             $requser->execute(array($_POST['text'], $newfilename));
+             $requser = $bdd->prepare("INSERT INTO vente(user_id, text, picture, price, available, date) VALUES(?, ?, ?, ?, 1, UNIX_TIMESTAMP())");
+             $requser->execute(array($_SESSION['id'], $_POST['text'], $newfileforsql, $_POST['price']));
         }
     }
 }

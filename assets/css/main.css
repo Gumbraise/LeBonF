@@ -2,6 +2,10 @@
     src: url(../font/CaviarDreams.ttf);
     font-family: normal
 }
+@font-face {
+    src: url(../font/GoboldBlockyRegular.otf);
+    font-family: gobold
+}
 @media (min-width:1200px) {
     .pub {
         margin: auto;
@@ -13,6 +17,25 @@
         height: 400px;
         background-color:#fff;
         z-index: 1;
+    }
+    .inside {
+        padding: 15px
+    }
+    .portable{
+        font-size: 0
+    }
+}
+@media (max-width:1200px) {
+    .portable {
+        position: relative;
+        width: 300px;
+        height: 400px;
+        background-color:#fff;
+        z-index: 1;
+
+        margin-bottom: 20px;
+        width: auto;
+        height: 100px;
     }
 }
 html {
@@ -26,6 +49,18 @@ header {
     background-color: rgb(106, 0, 177);
     z-index: 500;
     position: fixed;
+    font-family: gobold;
+    font-size: 40px;
+    color: rgb(235, 235, 235)
+}
+header p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    left: 0; right: 0; top:0; bottom:0;
 }
 .posts {
     width: 550px;
@@ -139,4 +174,69 @@ p.price {
 p.date {
     padding-top: 5px;
     font-size: 12px;
+}
+#price {
+    width: 100%;
+    height: 50px;
+    border: none;
+    font-family: normal;
+    font-weight: bold;
+    font-size: 18px
+}
+#room_connect {
+    font-size:18px;
+    margin-bottom: 2px;
+}
+#pass_connect{
+    font-size:18px;
+    margin-bottom: 5px;
+}
+.inside p{
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 28px;
+}
+input {
+    border: none
+}
+.inside button {
+    border: none;
+    border-radius: 5px;
+    background-color: #6a00b1;
+    color: #fff; 
+    margin-bottom: 20px;
+    
+    font-weight: bold;
+}
+.inside button:hover {
+    background-color: #500085
+}
+.inside button:focus {
+    background-color: #39005f
+}
+
+.youk {
+    font-family: normal;
+    width: 100%;
+    height: 30px;
+}
+input.youk {
+    font-size:18px;
+}
+
+#user_register {
+    font-size:18px;
+    margin-bottom: 2px;
+}
+#room_register{
+    font-size:18px;
+    margin-bottom: 2px;
+}
+#pass_register {
+    font-size:18px;
+    margin-bottom: 2px;
+}
+#pass2_register{
+    font-size:18px;
+    margin-bottom: 5px;
 }
