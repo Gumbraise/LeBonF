@@ -1,4 +1,4 @@
-var pub = document.getElementById("pub");
+var div = document.getElementById("ahbon");
 
 window.onload = function hh() {
     const request2 = new XMLHttpRequest();
@@ -7,7 +7,7 @@ window.onload = function hh() {
     request2.onreadystatechange = function()
     {
         if (request2.readyState === 4) {
-            pub.innerHTML = request2.responseText;
+            div.innerHTML = request2.responseText;
         }
     };
 }

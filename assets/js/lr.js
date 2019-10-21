@@ -20,8 +20,69 @@ login.onclick = function() {
     request.onreadystatechange = function()
     {
         if (request.readyState === 4) {
-            div.innerHTML = request.responseText;
+            if (request.responseText == "ok") {
+                toastr["success"]("Vous allez être connecté")
+
+                toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
+            } else if (request.responseText == "Erreur") {
+                toastr["error"]("Une erreur inconnue est survenue. Merci de réessayer plus tard")
+
+                toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
+            } else {
+                toastr["warning"](request.responseText)
+
+                toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
+            }
         }
+        window.location.reload(false); 
     };
 }
 
@@ -39,7 +100,68 @@ register.onclick = function() {
     request.onreadystatechange = function()
     {
         if (request.readyState === 4) {
-            div.innerHTML = request.responseText;
+            if (request.responseText == "ok") {
+                toastr["success"]("Vous allez être connecté")
+
+                toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
+            } else if (request.responseText == "Erreur") {
+                toastr["error"]("Une erreur inconnue est survenue. Merci de réessayer plus tard")
+
+                toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
+            } else {
+                toastr["warning"](request.responseText)
+
+                toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
+            }
         }
+        window.location.reload(false); 
     };
 }

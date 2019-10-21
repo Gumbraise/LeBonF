@@ -1,9 +1,10 @@
 <?php
+session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', '');
 
 $insertmbr = $bdd->prepare("SELECT * FROM vente");
 $insertmbr->execute(array());
-$userinfo = $insertmbr->fetchAll();
+$actuinfo = $insertmbr->fetchAll();
 
 $itemlist = $bdd->prepare("SELECT COUNT(*) as id FROM vente"); 
 $itemlist->execute(array());
@@ -12,26 +13,31 @@ $itemlist->closeCursor();
 
 if($itemlists['id'] > 0) {
     for($i = 0; $i < $itemlists['id']; $i++) {
+
+        $insertmbr2 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
+        $insertmbr2->execute(array($actuinfo[$i]['user_id']));
+        $userinfo = $insertmbr2->fetch();
+
         echo '
         <div class="fil" id="fil">
             <div class="top">
                 <div class="pp">
-                    <img src="'.$userinfo[$i]['picture'].'">
+                    <img src="'.$userinfo['picture'].'">
                 </div>
                 <div class="tet">
                     <a href="#">
-                        <p class="name">Lorem Ipsum</p>
+                        <p class="name">'.$userinfo['firstname'].'</p>
                     </a>
-                    <p class="salle">F202</p>
-                    <p class="date">'.date("j F, H:i", $userinfo[$i]['date']).'</p>
+                    <p class="salle">'.$userinfo['chambre'].'</p>
+                    <p class="date">'.date("j F, H:i", $actuinfo[$i]['date']).'</p>
                 </div>
                 <div class="price">
-                    <p class="price">'.$userinfo[$i]['price'].'€</p>
+                    <p class="price">'.$actuinfo[$i]['price'].'€</p>
                 </div>
             </div>
             <div class="body">
-                <p class="tett">'.$userinfo[$i]['text'].'</p>
-                <img src="'.$userinfo[$i]['picture'].'">
+                <p class="tett">'.$actuinfo[$i]['text'].'</p>
+                <img src="'.$actuinfo[$i]['picture'].'">
             </div>
         </div>
                     ';

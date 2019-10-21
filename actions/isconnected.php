@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(isset($_SESSION['id'])) {
-    echo 'you so credule';
+    echo 'ok';
 }
 else {
-    echo 'nothing nothing...';
+    echo 'no';
 }
 ?>
