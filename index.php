@@ -40,7 +40,7 @@
 				<div class="new">
 					<?php if(isset($_SESSION['id'])) { ?>
 					<textarea value="" placeholder="Votre texte ici..." id="textarea"></textarea>
-					<input value="" placeholder="Votre prix ici..." id="price">
+					<input value="" type="number" min="0" placeholder="Votre prix ici..." id="price">
 					<input name="file" type="file" id="file" accept="image/*">
 					<label for="file" id="inns" class="inputfile">Envoyez une photo</label>
 					<button id="button">Poster</button>
@@ -56,6 +56,6 @@
 	<script src="assets/js/post.js"></script>
 	<script src="assets/js/css.js"></script>
 	<script src="assets/js/lr.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </html>

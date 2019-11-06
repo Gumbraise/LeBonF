@@ -2,7 +2,7 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', '');
 
-$insertmbr = $bdd->prepare("SELECT * FROM vente");
+$insertmbr = $bdd->prepare("SELECT * FROM vente ORDER BY date DESC");
 $insertmbr->execute(array());
 $actuinfo = $insertmbr->fetchAll();
 
