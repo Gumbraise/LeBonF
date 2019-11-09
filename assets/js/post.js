@@ -58,6 +58,7 @@ button.onclick = function () {
                 }
                 textarea.value = "";
                 price.value = "";
+                
             }
         }
     };

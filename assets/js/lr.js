@@ -120,6 +120,7 @@ register.onclick = function() {
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
                 }
+                window.location.reload(false); 
             } else if (request.responseText == "Erreur") {
                 toastr["error"]("Une erreur inconnue est survenue. Merci de réessayer plus tard")
 
@@ -162,6 +163,5 @@ register.onclick = function() {
                 }
             }
         }
-        window.location.reload(false); 
     };
 }

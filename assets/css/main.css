@@ -85,7 +85,7 @@ header p {
 	margin-bottom: 20px
 }
 
-.pp>img {
+.pp img {
 	width: 75px;
 	border-radius: 50%
 }
@@ -115,7 +115,7 @@ a {
 }
 
 div.price {
-	right: 20px;
+	right: 50px;
 	position: absolute
 }
 
@@ -274,4 +274,27 @@ input {
 	font-weight: bold;
 	font-size: 18px;
 	height: 20px
+}
+.commentaires {
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	position: relative;
+	transition: .2s;
+	cursor: pointer
+}
+.commentaires:hover {
+	background-color: rgb(240, 240, 240)
+}
+.commentaires p {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin: auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0
 }
