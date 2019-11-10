@@ -37,14 +37,34 @@ if($itemlists['id'] > 0) {
                 </div>
                 <div class="price">
                     <p class="price">'.$actuinfo[$i]['price'].'€</p>
-                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="fonta">
+                    <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="profil.php?id='.$userinfo['id'].'">Accéder au profil</a>
+                        ';
+                        if(isset($_SESSION['id'])) { 
+                            $userinfoSelect = $bdd->prepare("SELECT * FROM users WHERE id = ?");
+                            $userinfoSelect->execute(array($_SESSION['id']));
+                            $userinfo2 = $userinfoSelect->fetch(); 
+                            if(($_SESSION['id'] == $actuinfo[$i]['user_id']) OR ($userinfo2['perm'] == 1)) {
+                                echo '
+                                <form action="actions/supprPost.php" method="POST" name="supprPost">
+                                    <input name="typeHidden" type="hidden" value="'.$actuinfo[$i]['id'].'">
+                                    <input name="supprPost" type="submit" class="dropdown-item" value="Supprimer la publication" style="color: #f00;" <!--data-toggle="modal" data-target="#supprPost"-->
+                                </form>
+                                ';
+                            }
+                        }
+                        echo '
+                    </div>
                 </div>
             </div>
             <div class="body">
                 <p class="tett">'.$actuinfo[$i]['text'].'</p>
                 <img src="'.$actuinfo[$i]['picture'].'">
             </div>
-            <div class="commentaires">
+            <div class="commentaires" id="hopw">
                 <p>'.$commentaire['id'].' commentaires</p>
             </div>
         </div>

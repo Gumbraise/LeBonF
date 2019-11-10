@@ -11,17 +11,30 @@
 </head>
 <body>
 <header>
-		<p>LEBONF .</p>
-	</header>
+	<p>TROCLAMO .</p>
+</header>
+    <?php 
+    $insertmbr2 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
+    $insertmbr2->execute(array($_GET['id']));
+    $userinfo = $insertmbr2->fetch();
 
-    <?php if(isset($_GET['id'])) {
-        if(isset($_SESSION['id'])) {
-            if($_SESSION['id'] == $_GET['id']){
-                echo 'Yey';
+    if(isset($_GET['id'])) {
+        if(isset($_SESSION['id'])) { ?>
+            <div class="posts">
+            <?php
+            if($_SESSION['id'] == $_GET['id']){ ?>
+                <div class="picture session">
+                    
+                    <img src="<?php echo $userinfo['picture'];?>">
+                </div>
+            </div>
+            <?php
             }
             else
-            {
-                echo 'Nope';
+            {?>
+                <div class="picture"><img src="<?php echo $userinfo['picture'];?>"></div>
+            </div>
+            <?php
             }
         }
         else

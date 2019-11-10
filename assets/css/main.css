@@ -82,7 +82,8 @@ header p {
 
 .fil {
 	background: #fff;
-	margin-bottom: 20px
+	margin-bottom: 20px;
+	position: relative
 }
 
 .pp img {
@@ -297,4 +298,26 @@ input {
 	right: 0;
 	top: 0;
 	bottom: 0
+}
+.fonta {
+	right: 20px;
+	position: absolute;
+	color: rgb(105, 105, 105);
+	transition: .2s
+}
+.fonta:hover {
+	color: #000;
+	cursor: pointer
+}
+.modal-dialog {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 50000;
 }

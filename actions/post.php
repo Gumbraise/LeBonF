@@ -32,7 +32,7 @@ if(isset($_SESSION['id'])) {
                             }
                             else
                             {
-                                $requser = $bdd->prepare("INSERT INTO vente(user_id, text, picture, price, available, date) VALUES(?, ?, ?, ?, 1, UNIX_TIMESTAMP())");
+                                $requser = $bdd->prepare("INSERT INTO vente(user_id, text, picture, price, date) VALUES(?, ?, ?, ?, UNIX_TIMESTAMP())");
                                 $requser->execute(array($_SESSION['id'], $_POST['text'], $newfileforsql, $_POST['price']));
                                 echo "ok";
                             }

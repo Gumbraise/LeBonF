@@ -38,3 +38,35 @@ header p {
 	top: 0;
 	bottom: 0
 }
+
+.posts {
+	width: 550px;
+	height: 100%;
+	top: 75px;
+	margin: auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	background-color: #ebebeb;
+	z-index: 1
+}
+
+.picture img{
+	width: 150px;
+	border-radius: 50%;
+
+	border-style: solid;
+	border-color: #6a00b1;
+	border-width: 5px
+}
+.picture {
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+.session img:hover {
+	background-color: black;
+	opacity: 0.1;
+}
