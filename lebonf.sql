@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 21 oct. 2019 à 14:43
+-- Généré le :  lun. 11 nov. 2019 à 17:37
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -21,8 +21,42 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `lebonf`
 --
-CREATE DATABASE IF NOT EXISTS `lebonf` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `lebonf`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `deletedcommentaires`
+--
+
+DROP TABLE IF EXISTS `deletedcommentaires`;
+CREATE TABLE IF NOT EXISTS `deletedcommentaires` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `vente_id` int(255) NOT NULL,
+  `text` varchar(1000) NOT NULL,
+  `date` int(15) NOT NULL,
+  `deleter_user_id` int(255) NOT NULL,
+  `deleter_date` int(15) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `deletedvente`
+--
+
+DROP TABLE IF EXISTS `deletedvente`;
+CREATE TABLE IF NOT EXISTS `deletedvente` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `user_id` int(255) NOT NULL,
+  `text` varchar(1000) NOT NULL,
+  `picture` varchar(255) NOT NULL,
+  `price` int(5) NOT NULL,
+  `date` int(15) NOT NULL,
+  `deleter_user_id` int(255) NOT NULL,
+  `deleter_date` int(15) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -39,8 +73,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `date` varchar(255) NOT NULL,
   `ip` varchar(255) NOT NULL,
   `picture` varchar(255) NOT NULL,
+  `perm` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -55,10 +90,24 @@ CREATE TABLE IF NOT EXISTS `vente` (
   `text` varchar(1000) NOT NULL,
   `picture` varchar(255) NOT NULL,
   `price` int(5) NOT NULL,
-  `available` int(1) NOT NULL,
   `date` int(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vente_commentaires`
+--
+
+DROP TABLE IF EXISTS `vente_commentaires`;
+CREATE TABLE IF NOT EXISTS `vente_commentaires` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `vente_id` int(255) NOT NULL,
+  `text` varchar(1000) NOT NULL,
+  `date` int(15) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -34,11 +34,6 @@
 		<header>
 			<p>TROCLAMO .</p>
 		</header>
-		
-
-		
-
-
 		<div class="posts">
 			<div id="ahbon">
 				<div class="pub" id="pub">
