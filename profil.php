@@ -16,7 +16,63 @@
 	</head>
 	<body>
 		<header>
-			<p>TROCLAMO .</p>
+        <div id="login" class="modal fade index" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Se Connecter</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+			</div>
+			<div class="modal-body">
+			<form action="actions/login.php" method="POST" name="connexion">
+					<input type="email" placeholder="Mail" name="email" required>
+					<input type="password" placeholder="Mot de passe"" name="pass" required>
+			</div>
+			<div class="modal-footer">
+					<button type="submit" class="btn btn-default" name="connexion">Se Connecter</button>
+				</form>
+			</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="register" class="modal fade index" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">S'Inscrire</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+			</div>
+			<div class="modal-body">
+				<form action="actions/register.php" method="POST" name="inscription">
+					<input type="text" placeholder="Prénom + Nom" name="name" required>
+					<input type="text" placeholder="Classe (1STI2D2)" name="classe" required>
+					<input type="email" placeholder="Mail" name="email" required>
+					<input type="password" placeholder="Mot de passe"" name="pass" required>
+					<input type="password" placeholder="Répétez le mot de passe" name="pass2" required>
+			</div>
+			<div class="modal-footer">
+					<button type="submit" class="btn btn-default" name="inscription">S'Inscrire</button>
+				</form>
+			</div>
+			</div>
+		</div>
+	</div>
+		<a href="index.php"><p>TROCLAMO .</p></a>
+		<img src="users\users\images\default.jpg" data-toggle="dropdown">
+		<div class="dropdown-menu">
+			<?php if(isset($_SESSION['id'])) { $insertmbr23 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
+                $insertmbr23->execute(array($_SESSION['id']));
+                $userinfo12 = $insertmbr23->fetch();?>
+				<a class="dropdown-item" href="profil.php?id=<?php echo $userinfo12['id']; ?>">Mon Profil</a>
+				<a class="dropdown-item" href="actions/logout.php">Se Déconnecter</a>
+			<?php } else { ?>
+				<a class="dropdown-item" data-toggle="modal" data-target="#login">Se Connecter</a>
+				<a class="dropdown-item" data-toggle="modal" data-target="#register">S'Inscrire</a>
+			<?php } ?>
+		</div>
 		</header>
 		<?php 
 			$insertmbr2 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
@@ -46,8 +102,8 @@
                             <?php
                                 }
                                 ?>
-                            <p class="pseudo"><?php echo $userinfo['firstname'];?></p>
-                            <p class="classe"><?php echo $userinfo['chambre'];?></p>
+                            <p class="pseudo"><?php echo $userinfo['name'];?></p>
+                            <p class="classe"><?php echo $userinfo['classe'];?></p>
                             <div id="poi">
                                 <?php
                                     $itemlist = $bdd->prepare("SELECT COUNT(*) as id FROM vente WHERE user_id = ?"); 
@@ -76,9 +132,9 @@
                                                     </div>
                                                     <div class="tet">
                                                         <a href="#">
-                                                            <p class="name">'.$userinfo['firstname'].'</p>
+                                                            <p class="name">'.$userinfo['name'].'</p>
                                                         </a>
-                                                        <p class="salle">'.$userinfo['chambre'].'</p>
+                                                        <p class="salle">'.$userinfo['classe'].'</p>
                                                         <p class="date">'.date("j F, H:i", $actuinfo[$i]['date']).'</p>
                                                     </div>
                                                     <div class="price">
@@ -117,7 +173,7 @@
                                                         ';
                                         }
                                     } else {
-                                        echo $userinfo['firstname'].' n\'a toujours pas posté de publication...';
+                                        echo $userinfo['name'].' n\'a toujours pas posté de publication...';
                                     }
                                 ?>
                             </div>
@@ -129,10 +185,10 @@
                     ?>
                         <div class="posts">
                         <div class="picture"><img src="<?php echo $userinfo['picture'];?>"></div>
-                        <p class="pseudo"><?php echo $userinfo['firstname'];?></p>
-                        <p class="classe"><?php echo $userinfo['chambre'];?></p>
+                        <p class="pseudo"><?php echo $userinfo['name'];?></p>
+                        <p class="classe"><?php echo $userinfo['classe'];?></p>
                             <div id="poi">
-                                Vous n'avez pas accès au compte de <?php echo $userinfo['firstname'];?> tant que vous n'êtes pas connecté
+                                Vous n'avez pas accès au compte de <?php echo $userinfo['name'];?> tant que vous n'êtes pas connecté
                             </div>
                         </div>
                 <?php

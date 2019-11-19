@@ -13,18 +13,46 @@
 		<title>LeBonF</title>
 	</head>
 
-	<div id="login" class="modal fade" role="dialog">
+	<div id="login" class="modal fade index" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 			<div class="modal-header">
+				<h4 class="modal-title">Se Connecter</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Modal Header</h4>
+
 			</div>
 			<div class="modal-body">
-				<p>Some text in the modal.</p>
+			<form action="actions/login.php" method="POST" name="connexion">
+					<input type="email" placeholder="Mail" name="email" required>
+					<input type="password" placeholder="Mot de passe"" name="pass" required>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-default" name="connexion">Se Connecter</button>
+				</form>
+			</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="register" class="modal fade index" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">S'Inscrire</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+			</div>
+			<div class="modal-body">
+				<form action="actions/register.php" method="POST" name="inscription">
+					<input type="text" placeholder="Prénom + Nom" name="name" required>
+					<input type="text" placeholder="Classe (1STI2D2)" name="classe" required>
+					<input type="email" placeholder="Mail" name="email" required>
+					<input type="password" placeholder="Mot de passe"" name="pass" required>
+					<input type="password" placeholder="Répétez le mot de passe" name="pass2" required>
+			</div>
+			<div class="modal-footer">
+					<button type="submit" class="btn btn-default" name="inscription">S'Inscrire</button>
+				</form>
 			</div>
 			</div>
 		</div>
@@ -32,16 +60,21 @@
 		
 	<body>
 		<header>
-			<p>TROCLAMO .</p>
+		<a href="index.php"><p>TROCLAMO .</p></a>
+		<img src="users\users\images\default.jpg" data-toggle="dropdown">
+		<div class="dropdown-menu">
+			<?php if(isset($_SESSION['id'])) { $insertmbr23 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
+                $insertmbr23->execute(array($_SESSION['id']));
+                $userinfo12 = $insertmbr23->fetch();?>
+				<a class="dropdown-item" href="profil.php?id=<?php echo $userinfo12['id']; ?>">Mon Profil</a>
+				<a class="dropdown-item" href="actions/logout.php">Se Déconnecter</a>
+			<?php } else { ?>
+				<a class="dropdown-item" data-toggle="modal" data-target="#login">Se Connecter</a>
+				<a class="dropdown-item" data-toggle="modal" data-target="#register">S'Inscrire</a>
+			<?php } ?>
+		</div>
 		</header>
 		<div class="posts">
-			<div id="ahbon">
-				<div class="pub" id="pub">
-					<div class="inside">
-						
-					</div>
-				</div>
-			</div>
 			<div class="post">
 				<div class="new">
 					<?php if(isset($_SESSION['id'])) { ?>
@@ -49,10 +82,29 @@
 					<input value="" type="number" min="0" placeholder="Votre prix ici..." id="price">
 					<input name="file" type="file" id="file" accept="image/*">
 					<label for="file" id="inns" class="inputfile">Envoyez une photo</label>
+					<select id="postselect" value="" class="postselect">
+						<option value="none" disabled selected>---Selectionner une catégorie---</option>
+						<option value="informatique">Informatique</option>
+						<option value="nourriture">Nourriture</option>
+						<option value="services">Services</option>
+						<option value="livres">Livres</option>
+						<option value="musique">Musique</option>
+					</select>
 					<button id="button">Poster</button>
 					<?php } else { ?> Veuillez vous connecter pour pouvoir poster une annonce 
 					<?php } ?>
+					
 				</div>
+			</div>
+			<div class="categorie">
+				<select id="select" value="" class="categorie">
+					<option value="none" disabled selected>---Selectionner une catégorie---</option>
+					<option value="informatique">Informatique</option>
+					<option value="nourriture">Nourriture</option>
+					<option value="services">Services</option>
+					<option value="livres">Livres</option>
+					<option value="musique">Musique</option>
+				</select>
 			</div>
 			<div id="poi"></div>
 		</div>

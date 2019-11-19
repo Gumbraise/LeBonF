@@ -30,9 +30,9 @@ if($itemlists['id'] > 0) {
                 </div>
                 <div class="tet">
                     <a href="#">
-                        <p class="name">'.$userinfo['firstname'].'</p>
+                        <p class="name">'.$userinfo['name'].'</p>
                     </a>
-                    <p class="salle">'.$userinfo['chambre'].'</p>
+                    <p class="salle">'.$userinfo['classe'].'</p>
                     <p class="date">'.date("j F, H:i", $actuinfo[$i]['date']).'</p>
                 </div>
                 <div class="price">
