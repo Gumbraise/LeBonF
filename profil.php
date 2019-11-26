@@ -1,6 +1,10 @@
 
 
-<?php session_start(); $bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', ''); ?>
+<?php session_start(); $bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', ''); 
+$insertmbr2 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
+$insertmbr2->execute(array($_GET['id']));
+$userinfo = $insertmbr2->fetch();
+$usercount = $insertmbr2->rowCount(); ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -28,7 +32,7 @@
 			<div class="modal-body">
 			<form action="actions/login.php" method="POST" name="connexion">
 					<input type="email" placeholder="Mail" name="email" required>
-					<input type="password" placeholder="Mot de passe"" name="pass" required>
+					<input type="password" placeholder="Mot de passe" name="pass" required>
 			</div>
 			<div class="modal-footer">
 					<button type="submit" class="btn btn-default" name="connexion">Se Connecter</button>
@@ -51,7 +55,7 @@
 					<input type="text" placeholder="Prénom + Nom" name="name" required>
 					<input type="text" placeholder="Classe (1STI2D2)" name="classe" required>
 					<input type="email" placeholder="Mail" name="email" required>
-					<input type="password" placeholder="Mot de passe"" name="pass" required>
+					<input type="password" placeholder="Mot de passe" name="pass" required>
 					<input type="password" placeholder="Répétez le mot de passe" name="pass2" required>
 			</div>
 			<div class="modal-footer">
@@ -61,8 +65,12 @@
 			</div>
 		</div>
 	</div>
-		<a href="index.php"><p>TROCLAMO .</p></a>
-		<img src="users\users\images\default.jpg" data-toggle="dropdown">
+        <a href="index.php"><p>TROCLAMO .</p></a>
+        <?php if(isset($_SESSION['id'])) { ?>
+            <img src="<?php echo $userinfo['picture'];?>" id="pp_header" data-toggle="dropdown">
+        <?php } else { ?>
+            <img src="users\users\images\default.jpg" id="pp_header" data-toggle="dropdown">
+        <?php } ?>
 		<div class="dropdown-menu">
 			<?php if(isset($_SESSION['id'])) { $insertmbr23 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
                 $insertmbr23->execute(array($_SESSION['id']));
@@ -76,10 +84,6 @@
 		</div>
 		</header>
 		<?php 
-			$insertmbr2 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
-			$insertmbr2->execute(array($_GET['id']));
-			$userinfo = $insertmbr2->fetch();
-			         $usercount = $insertmbr2->rowCount();
 			         
 			if(isset($_GET['id'])) {
 			    if($usercount == 1) {

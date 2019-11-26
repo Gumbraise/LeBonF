@@ -1,4 +1,6 @@
-<?php session_start(); $bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', ''); ?>
+<?php session_start(); $bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', ''); 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -62,7 +64,13 @@
 	<body>
 		<header>
 		<a href="index.php"><p>TROCLAMO .</p></a>
-		<img src="users\users\images\default.jpg" data-toggle="dropdown">
+        <?php if(isset($_SESSION['id'])) { $insertmbr2223 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
+$insertmbr2223->execute(array($_SESSION['id']));
+$userinfo223 = $insertmbr2223->fetch();?>
+            <img src="<?php echo $userinfo223['picture'];?>" id="pp_header" data-toggle="dropdown">
+        <?php } else { ?>
+            <img src="users\users\images\default.jpg" id="pp_header" data-toggle="dropdown">
+        <?php } ?>
 		<div class="dropdown-menu">
 			<?php if(isset($_SESSION['id'])) { $insertmbr23 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
                 $insertmbr23->execute(array($_SESSION['id']));

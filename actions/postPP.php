@@ -24,7 +24,7 @@ if(isset($_POST['upload'])) {
 
             $requser = $bdd->prepare("UPDATE users SET picture = ? WHERE id = ?");
             $requser->execute(array($newfileforsql, $_SESSION['id']));
-            echo "ok";
+            echo $newfileforsql;
         } else {
             echo "Veuillez bien upload une image s'il vous plaît";
         }
