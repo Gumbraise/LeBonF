@@ -1,56 +1,38 @@
 <?php
-session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', '');
 
-$insertmbr = $bdd->prepare("SELECT * FROM vente ORDER BY date DESC WHERE id = ?");
-$insertmbr->execute(array($_POST['id']));
-$actuinfo = $insertmbr->fetchAll();
+if($vente_user_count > 0) {
+    for($i = 0; $i < $vente_user_count; $i++) {
 
-$itemlist = $bdd->prepare("SELECT COUNT(*) as id FROM vente WHERE id = ?"); 
-$itemlist->execute(array($_POST['id']));
-$itemlists = $itemlist->fetch();
-$itemlist->closeCursor();
-
-if($itemlists['id'] > 0) {
-    for($i = 0; $i < $itemlists['id']; $i++) {
-
-        $insertmbr2 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
-        $insertmbr2->execute(array($actuinfo[$i]['user_id']));
-        $userinfo = $insertmbr2->fetch();
-
-        $com = $bdd->prepare("SELECT COUNT(*) as id FROM vente_commentaires WHERE vente_id = ?");
-        $com->execute(array($actuinfo[$i]['id']));
-        $commentaire = $com->fetch();
+        $com = $bdd->prepare("SELECT * FROM vente_commentaires WHERE vente_id = ?");
+        $com->execute(array($vente_user[$i]['id']));
+        $commentaire = $com->rowCount();
 
         echo '
         <div class="fil" id="fil">
             <div class="top">
                 <div class="pp">
-                    <img src="'.$userinfo['picture'].'">
+                    <img src="'.$get_user['picture'].'">
                 </div>
                 <div class="tet">
                     <a href="#">
-                        <p class="name">'.$userinfo['name'].'</p>
+                        <p class="name">'.$get_user['name'].'</p>
                     </a>
-                    <p class="salle">'.$userinfo['classe'].'</p>
-                    <p class="date">'.date("j F, H:i", $actuinfo[$i]['date']).'</p>
+                    <p class="salle">'.$get_user['classe'].'</p>
+                    <p class="date">'.date("j F, H:i", $vente_user[$i]['date']).'</p>
                 </div>
                 <div class="price">
-                    <p class="price">'.$actuinfo[$i]['price'].'€</p>
+                    <p class="price">'.$vente_user[$i]['price'].'€</p>
                 </div>
                 <div class="fonta">
                     <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="profil.php?id='.$userinfo['id'].'">Accéder au profil</a>
+                        <a class="dropdown-item" href="profil.php?id='.$get_user['id'].'">Accéder au profil</a>
                         ';
                         if(isset($_SESSION['id'])) { 
-                            $userinfoSelect = $bdd->prepare("SELECT * FROM users WHERE id = ?");
-                            $userinfoSelect->execute(array($_SESSION['id']));
-                            $userinfo2 = $userinfoSelect->fetch(); 
-                            if(($_SESSION['id'] == $actuinfo[$i]['user_id']) OR ($userinfo2['perm'] == 1)) {
+                            if(($_SESSION['id'] == $vente_user[$i]['user_id']) OR ($session_user['perm'] == 1)) {
                                 echo '
                                 <form action="actions/supprPost.php" method="POST" name="supprPost">
-                                    <input name="typeHidden" type="hidden" value="'.$actuinfo[$i]['id'].'">
+                                    <input name="typeHidden" type="hidden" value="'.$vente_user[$i]['id'].'">
                                     <input name="supprPost" type="submit" class="dropdown-item" value="Supprimer la publication" style="color: #f00;" <!--data-toggle="modal" data-target="#supprPost"-->
                                 </form>
                                 ';
@@ -61,11 +43,11 @@ if($itemlists['id'] > 0) {
                 </div>
             </div>
             <div class="body">
-                <p class="tett">'.$actuinfo[$i]['text'].'</p>
-                <img src="'.$actuinfo[$i]['picture'].'">
+                <p class="tett">'.$vente_user[$i]['text'].'</p>
+                <img src="'.$vente_user[$i]['picture'].'">
             </div>
             <div class="commentaires" id="hopw">
-                <p>'.$commentaire['id'].' commentaires</p>
+                <p>'.$commentaire.' commentaires</p>
             </div>
         </div>
                     ';

@@ -6,7 +6,7 @@ var select = document.getElementById("select");
 
 window.onload = function actus() {
     const request = new XMLHttpRequest();
-    request.open('POST', 'actions/actus.php', true);
+    request.open('POST', '?action=actus', true);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send('categorie='+ select.value);
     request.onreadystatechange = function()
@@ -15,7 +15,6 @@ window.onload = function actus() {
             div.innerHTML = request.responseText;
         }
     };
-    setTimeout(actus, 15000);
 }
 
 fileinput.onchange = function() {
@@ -24,7 +23,7 @@ fileinput.onchange = function() {
 
 select.onchange = function() {
     const request = new XMLHttpRequest();
-    request.open('POST', 'actions/actus.php', true);
+    request.open('POST', '?action=actus', true);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send('categorie='+ select.value);
     request.onreadystatechange = function()

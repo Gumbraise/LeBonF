@@ -1,20 +1,13 @@
 <?php
-session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', '');
-
 if(isset($_POST['categorie'])) {
     if($_POST['categorie'] == "none") {
-        $insertmbr = $bdd->prepare("SELECT * FROM vente ORDER BY date DESC");
-        $insertmbr->execute(array());
-        $actuinfo = $insertmbr->fetchAll();
+        $select5 = $bdd->prepare("SELECT * FROM vente ORDER BY date DESC");
+        $select5->execute(array());
+        $vente_all = $select5->fetchAll();
+        $vente_all_count = $select5->rowCount();
 
-        $itemlist = $bdd->prepare("SELECT COUNT(*) as id FROM vente"); 
-        $itemlist->execute(array());
-        $itemlists = $itemlist->fetch();
-        $itemlist->closeCursor();
-
-        if($itemlists['id'] > 0) {
-            for($i = 0; $i < $itemlists['id']; $i++) {
+        if($vente_all_count > 0) {
+            for($i = 0; $i < $vente_all_count; $i++) {
 
                 $insertmbr2 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
                 $insertmbr2->execute(array($actuinfo[$i]['user_id']));
@@ -85,8 +78,8 @@ if(isset($_POST['categorie'])) {
         $itemlists = $itemlist->fetch();
         $itemlist->closeCursor();
 
-        if($itemlists['id'] > 0) {
-            for($i = 0; $i < $itemlists['id']; $i++) {
+        if($vente_all_count > 0) {
+            for($i = 0; $i < $vente_all_count; $i++) {
 
                 $insertmbr2 = $bdd->prepare("SELECT * FROM users WHERE id = ?");
                 $insertmbr2->execute(array($actuinfo[$i]['user_id']));
