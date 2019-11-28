@@ -10,7 +10,7 @@ fileSelect.onchange = function() {
     formData.set("file", file, file.name);
 
     var request = new XMLHttpRequest();
-    request.open('POST', 'actions/postPP.php', true);
+    request.open('POST', '?action=postPP', true);
     request.send(formData);
     request.onreadystatechange = function()
     {

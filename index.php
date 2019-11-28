@@ -3,9 +3,9 @@ session_start();
 
 include('controleur/bdd.php');
 include('controleur/select.php');
-include('include/header.php');
 
 if(isset($_GET['page'])) {
+    include('include/header.php'); 
     switch($_GET['page']) {
         case 'index':
             include('pages/accueil.php');
@@ -46,12 +46,28 @@ else if(isset($_GET['action'])) {
         case 'actus':
             include('actions/actus.php');
             break;
+        case 'actusPP':
+            include('actions/actusPP.php');
+            break;
+        case 'actusCommentaire':
+            include('actions/actusCommentaire.php');
+            break;
+        case 'postCommentaire':
+            include('actions/postCommentaire.php');
+            break;
+        case 'post':
+            include('actions/post.php');
+            break;
+        case 'postPP':
+            include('actions/postPP.php');
+            break;
         default:
             include('pages/accueil.php');
             break;
     }
 }
 else {
+    include('include/header.php'); 
     include('pages/accueil.php');
 }
 include('include/footer.php');

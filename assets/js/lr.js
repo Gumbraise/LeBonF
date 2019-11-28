@@ -15,7 +15,7 @@ login.onclick = function() {
     formData.set("pass", pass_connect.value);
 
     var request = new XMLHttpRequest();
-    request.open('POST', 'actions/login.php', true);
+    request.open('POST', '?action=login', true);
     request.send(formData);
     request.onreadystatechange = function()
     {
@@ -95,7 +95,7 @@ register.onclick = function() {
     formData.set("pass2", pass2_register.value);
 
     var request = new XMLHttpRequest();
-    request.open('POST', 'actions/register.php', true);
+    request.open('POST', '?action=register', true);
     request.send(formData);
     request.onreadystatechange = function()
     {

@@ -22,14 +22,5 @@ fileinput.onchange = function() {
 }
 
 select.onchange = function() {
-    const request = new XMLHttpRequest();
-    request.open('POST', '?action=actus', true);
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send('categorie='+ select.value);
-    request.onreadystatechange = function()
-    {
-        if (request.readyState === 4) {
-            div.innerHTML = request.responseText;
-        }
-    };
+    actus();
 }

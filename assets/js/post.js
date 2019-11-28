@@ -15,7 +15,7 @@ button.onclick = function () {
     formData.set("select", select2.value);
 
     var request = new XMLHttpRequest();
-    request.open('POST', 'actions/post.php', true);
+    request.open('POST', '?action=post', true);
     request.send(formData);
     request.onreadystatechange = function()
     {
