@@ -1,5 +1,4 @@
 <?php
-
 if($vente_user_count > 0) {
     for($i = 0; $i < $vente_user_count; $i++) {
 

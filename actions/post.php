@@ -1,7 +1,4 @@
 <?php
-session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', '');
-
 if(isset($_SESSION['id'])) {
     if(isset($_POST['upload'])) {
         if(isset($_POST['text'])) {
@@ -60,6 +57,6 @@ if(isset($_SESSION['id'])) {
     }
 } else {
     echo "Erreur";
-    header ("Location: /");
+    header ("Location: index.php");
 }
 ?>

@@ -1,7 +1,4 @@
 <?php
-session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', '');
-
 if(!empty($_POST['supprPost']) AND !empty($_POST['typeHidden'])) {
     if(isset($_SESSION['id'])) {
         $postSelect = $bdd->prepare("SELECT * FROM vente WHERE id = ?");
@@ -33,7 +30,7 @@ if(!empty($_POST['supprPost']) AND !empty($_POST['typeHidden'])) {
                 $deleteCom->execute(array($com[$i]['id']));
             }
 
-            header("Location: ../");
+            header("Location: index.php");
         }
         else {
             echo "Vous n'êtes pas autorisé à effectuer cette action !";

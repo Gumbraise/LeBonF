@@ -1,7 +1,4 @@
 <?php
-session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', '');
-
 if(isset($_POST['upload'])) {
     if(!empty($_FILES['file']['name'])) {
         $image = "";

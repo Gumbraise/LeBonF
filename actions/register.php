@@ -1,6 +1,4 @@
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=lebonf', 'root', '');
-session_start();
 if(isset($_POST['inscription'])) {
     if(!empty($_POST['classe']) AND !empty($_POST['pass']) AND !empty($_POST['pass2']) AND !empty($_POST['name'] AND !empty($_POST['email']))) {
         $pass = md5($_POST['pass']);
@@ -22,7 +20,7 @@ if(isset($_POST['inscription'])) {
                 $userexist = $requser->fetch();
                 $_SESSION['id'] = $userexist['id'];
                 echo "ok";
-                header('Location: ../index.php');
+                header('Location: index.php');
             } else {
                 echo "Vous avez déjà un compte. Veuillez vous connectez s'il vous plaît.";
             }
@@ -34,6 +32,6 @@ if(isset($_POST['inscription'])) {
     }
 } else {
     echo "Erreur";
-    header ("Location: /");
+    header ("Location: index.php");
 }
 ?>

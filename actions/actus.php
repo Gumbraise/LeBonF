@@ -137,6 +137,6 @@ if(isset($_POST['categorie'])) {
 
     }
 } else {
-    echo 'Error';
+    echo 'Erreur';
 }
 ?>
