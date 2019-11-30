@@ -1,0 +1,12 @@
+@import 'header.css';
+@import 'accueil.css';
+
+@font-face {
+	src: url(../font/CaviarDreams.ttf);
+	font-family: normal;
+}
+
+@font-face {
+	src: url(../font/GoboldBlockyRegular.otf);
+	font-family: gobold;
+}
